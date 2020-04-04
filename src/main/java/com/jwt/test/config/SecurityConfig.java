@@ -19,6 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * * Spring Security 配置类
+ * * @EnableGlobalMethodSecurity 开启注解的权限控制，默认是关闭的。
+ * * prePostEnabled：使用表达式实现方法级别的控制，如：@PreAuthorize("hasRole('ADMIN')")
+ * * securedEnabled: 开启 @Secured 注解过滤权限，如：@Secured("ROLE_ADMIN")
+ * * jsr250Enabled: 开启 @RolesAllowed 注解过滤权限，如：@RolesAllowed("ROLE_ADMIN")
+ */
 @Configuration
 @EnableWebSecurity// 这个注解必须加，开启Security
 @EnableGlobalMethodSecurity(prePostEnabled = true)//保证post之前的注解可以使用
@@ -61,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/index.html","/favicon.ico");
+        web.ignoring().antMatchers("/index.html", "/favicon.ico");
     }
 
     @Bean
